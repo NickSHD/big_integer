@@ -81,11 +81,6 @@ big_integer::~big_integer() {
     data.clear();
 }
 
-big_integer &big_integer::operator=(big_integer const &other) {
-    data = other.data;
-    return *this;
-}
-
 big_integer &big_integer::operator+=(big_integer const &rhs) {
     size_t len = std::max(data.size(), rhs.data.size()) + 1;
     ui emptyCell = getEmptyCell();
