@@ -384,7 +384,7 @@ bool operator<(big_integer const &a, big_integer const &b) {
         return a.getSign();
     }
     if (a.data.size() != b.data.size()) {
-        return a.data.size() < b.data.size();
+        return (a.data.size() < b.data.size()) ^ a.getSign();
     }
     for (size_t i = a.data.size(); i > 0; --i) {
         if (a.data[i - 1] != b.data[i - 1]) {

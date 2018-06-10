@@ -77,9 +77,6 @@ void ui_vector::clear() {
 }
 
 void ui_vector::resize(size_t len) {
-    if (len == _size) {
-        return;
-    }
     if (is_big()) {
         if (len < 2) {
             ui tmp = operator[](0);
@@ -129,7 +126,7 @@ bool operator==(ui_vector const &a, ui_vector const &b) {
     if (a.is_big() ^ b.is_big()) {
         return false;
     } else if (a.is_big()) {
-        return *(a.big) == *(b.big);
+        return *a.big == *b.big;
     }
     return a.small == b.small;
 }
