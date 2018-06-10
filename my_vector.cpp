@@ -28,7 +28,6 @@ bool ui_vector::empty() const {
 }
 
 ui ui_vector::back() const {
-    assert(_size > 0);
     if (is_big()) {
         return big->at(_size - 1);
     }
@@ -36,7 +35,6 @@ ui ui_vector::back() const {
 }
 
 ui &ui_vector::back() {
-    assert(_size > 0);
     if (is_big()) {
         check_count();
         return big->at(_size - 1);
@@ -58,7 +56,6 @@ void ui_vector::push_back(ui val) {
 }
 
 void ui_vector::pop_back() {
-    assert(_size > 0);
     if (!is_big()) {
         small = 0;
     } else if (_size > 2) {
@@ -93,7 +90,6 @@ void ui_vector::resize(size_t len) {
 }
 
 ui ui_vector::operator[](size_t ind) const {
-    assert(ind < _size);
     if (is_big()) {
         return big->at(ind);
     }
@@ -101,7 +97,6 @@ ui ui_vector::operator[](size_t ind) const {
 }
 
 ui &ui_vector::operator[](size_t ind) {
-    assert(ind < _size);
     if (is_big()) {
         check_count();
         return big->at(ind);
