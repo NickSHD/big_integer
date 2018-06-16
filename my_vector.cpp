@@ -29,7 +29,7 @@ bool ui_vector::empty() const {
 
 ui ui_vector::back() const {
     if (is_big()) {
-        return big->at(_size - 1);
+        return big->operator[](_size - 1);
     }
     return small;
 }
@@ -37,7 +37,7 @@ ui ui_vector::back() const {
 ui &ui_vector::back() {
     if (is_big()) {
         check_count();
-        return big->at(_size - 1);
+        return big->operator[](_size - 1);
     }
     return small;
 }
@@ -62,7 +62,7 @@ void ui_vector::pop_back() {
         check_count();
         big->pop_back();
     } else {
-        ui tmp = big->at(0);
+        ui tmp = big->operator[](0);
         big.reset();
         small = tmp;
     }
@@ -91,7 +91,7 @@ void ui_vector::resize(size_t len) {
 
 ui ui_vector::operator[](size_t ind) const {
     if (is_big()) {
-        return big->at(ind);
+        return big->operator[](ind);
     }
     return small;
 }
@@ -99,7 +99,7 @@ ui ui_vector::operator[](size_t ind) const {
 ui &ui_vector::operator[](size_t ind) {
     if (is_big()) {
         check_count();
-        return big->at(ind);
+        return big->operator[](ind);
     }
     return small;
 }
