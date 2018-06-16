@@ -90,12 +90,11 @@ big_integer &big_integer::operator+=(big_integer const &rhs) {
         data[oldSize++] = emptyCell;
     }
     bool c = false;
-    ui a = 0, b = 0;
+    ui b = 0;
     for (size_t i = 0; i < len; ++i) {
         bool oldC = c;
-        c = (ull) (a = i < data.size() ? data[i] : this->getEmptyCell()) +
-            (b = i < rhs.data.size() ? rhs.data[i] : rhs.getEmptyCell()) + c >= kBase;
-        data[i] = a + b + oldC;
+        c = (ull)data[i] + (b = i < rhs.data.size() ? rhs.data[i] : rhs.getEmptyCell()) + c >= kBase;
+        data[i] += b + oldC;
     }
     relax();
     return *this;
@@ -206,8 +205,7 @@ big_integer &big_integer::apply_bit_operation(big_integer const &rhs, const std:
         data[oldSize++] = emptyCell;
     }
     for (size_t i = 0; i < len; ++i) {
-        data[i] = func(i < data.size() ? data[i] : this->getEmptyCell(),
-                       i < rhs.data.size() ? rhs.data[i] : rhs.getEmptyCell());
+        data[i] = func(data[i], i < rhs.data.size() ? rhs.data[i] : rhs.getEmptyCell());
     }
     relax();
     return *this;
